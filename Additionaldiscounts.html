@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>汽车贷款计算器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="index.css">
+    <script src="calculatescript.js"></script>
+</head>
+<body>
+
+    <p>此计算器可计算我方利率与竞品利率的月供差，反向计算其贷款金额的差异并体现为贴息金额，一般用于计算竞品之间的差异。</p>
+    <div class="container">
+        <div class="form-row">
+            <label for="interest-rate">我方利率：%</label>
+            <input type="number" id="interest-rate" required placeholder="10.88"><span class="required"></span>
+        </div>
+        <hr>
+        <div class="form-row">
+            <label for="periods">期数：</label>
+            <input type="number" id="periods" required placeholder="60"><span class="required"></span>
+        </div>
+        <div class="form-row">
+            <label for="loan-amount">贷款金额：</label>
+            <input type="number" id="loan-amount" required placeholder="100000"><span class="required"></span>
+        </div>
+        <div class="form-row">
+            <label for="discount-amount">竞品贴息：</label>
+            <input type="number" id="discount-amount" required placeholder="竞品贴息金额，默认0"><span class="required"></span>
+        </div><hr>
+
+
+
+
+        <div class="form-row">
+            <label for="calculationMethod">已知竞品信息：</label>
+            <select id="calculationMethod" required onchange="updateCoefficient()">
+                <option value="2075.4">竞品月供</option>
+                <option value="0.0899">竞品利率</option>
+                <option value="0.2452">竞品费率</option>
+                <option value="207.54">竞品万元系数</option>
+                <option value="24524">竞品利息</option>
+                <option value="4.1">竞品月息</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label for="Month">系数：</label>
+            <input type="number" id="Month" required placeholder="例如月供2075.40"><span class="required"></span>
+        </div><hr>
+
+        <div class="form-row">
+            <label for="subsidyVerification">贴息验证：</label>
+            <input type="number" id="subsidyVerification" required placeholder="请输入想验证的贴息金额"><span class="required"></span>
+        </div>
+
+
+
+        <div class="form-row">
+          <div class="button-container">
+            <button onclick="resetForm()">重置</button>
+            <button onclick="monthlyPaymentAdditionaldiscounts()">计算</button>
+
+          </div>
+        </div>
+
+        <div class="form-row">
+            <label for="Interes-Rate">利率验证：</label>
+            <input type="text" id="Interes-Rate" readonly>
+        </div>
+        <div class="form-row">
+            <label for="monthlyPayment">竞品月供：</label>
+            <input type="number" id="monthlyPayment" readonly>
+        </div>
+        <div class="form-row">
+            <label for="DiscountAmount">需额外贴息：</label>
+            <input type="number" id="DiscountAmount" readonly>
+        </div>
+        <div class="form-row">
+            <label for="Interest-on-Loans">实际利息：</label>
+            <input type="number" id="Interest-on-Loans" readonly>
+        </div>
+        <div class="form-row">
+            <label for="Monthly-Rates">实际月息：</label>
+            <input type="text" id="Monthly-Rates" readonly>
+        </div>
+        <div class="form-row">
+            <label for="rateDifferences">额外贴息率：</label>
+            <input type="text" id="rateDifferences" readonly>
+        </div>
+    </div>
+    <script>
+
+        function resetForm() {
+            document.getElementById("loan-amount").value = "";
+            document.getElementById("interest-rate").value = "";
+            document.getElementById("periods").value = "";
+            document.getElementById("discount-amount").value = "";
+            document.getElementById("Month").value = "";
+            document.getElementById("subsidyVerification").value = "";
+
+            document.getElementById("Interes-Rate").value = "";
+            document.getElementById("monthlyPayment").value = "";
+            document.getElementById("DiscountAmount").value = "";
+            document.getElementById("Interest-on-Loans").value = "";
+            document.getElementById("Monthly-Rates").value = "";
+
+        }
+        function updateCoefficient() {
+            var calculationMethod = document.getElementById("calculationMethod");
+            var Month = document.getElementById("Month");
+
+            if (calculationMethod.value === "0.0899") {
+                Month.placeholder = "例如系数8.99";
+            } else if (calculationMethod.value === "0.2452") {
+                Month.placeholder = "例如系数24.52";
+            } else if (calculationMethod.value === "207.54") {
+                Month.placeholder = "例如万元系数207.54";
+            } else if (calculationMethod.value === "2075.4") {
+                Month.placeholder = "例如月供2075.4";
+            }else if (calculationMethod.value === "24524") {
+                Month.placeholder = "例如利息24524.00";
+            }else if (calculationMethod.value === "4.1") {
+                Month.placeholder = "例如月息4厘1，写做4.1";
+            }
+            Month.value = ""; // 清空interestRate的值
+        }
+    </script>
+</body>
+</html>
+

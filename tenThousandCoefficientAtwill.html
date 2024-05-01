@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>利率、费率、万元系数转换器</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="index.css">
+    <script src="calculatescript.js"></script>
+</head>
+<body>
+<br>
+<div class="container">
+    <div class="form-row">
+        <label for="periods">期数：</label>
+        <input type="number" id="periods" required placeholder="60"><span class="required"></span>
+    </div>
+    <!-- 隐藏贷款金额 -->
+    <div style="display:none;">
+        <label>贷款金额：</label>
+        <input type="number" id="loanAmount" value="10000" readonly>
+    </div>
+    <br>
+
+
+    <div class="form-row">
+        <label for="calculationMethod" class="red-text">转化方式：</label>
+        <select id="calculationMethod" required onchange="updateCoefficient()">
+            <option value="0.0899">利率转其他</option>
+            <option value="0.2452">费率转其他</option>
+            <option value="207.54">万元系数转其他</option>
+            <option value="4.1">月息转其他</option>
+            <option value="2100">月供转其他</option>
+        </select>
+    </div>
+    <br>
+    <div class="form-row" id="loanAmountRow" style="display:none; justify-content: flex-end;">
+        <label for="loanAmountInput">贷款金额：</label>
+        <input type="number" id="loanAmountInput" required placeholder="请输入贷款金额"><span class="required"></span>
+    </div>
+
+    <br>
+    <div class="form-row">
+        <label for="interestRate">系数：</label>
+        <input type="number" id="interestRate" required placeholder="例如系数8.99"  onblur="checkPurchaseTaxmonthlyPayment()"><span class="required"></span>
+    </div>
+    <br>
+    <div class="form-row" id="amountOfDiscount" style="display:none; justify-content: flex-end;">
+        <label for="discount">贴息：</label>
+        <input type="number" id="discount" placeholder="贴息金额默认0">
+    </div>
+
+
+    <div class="form-row">
+        <div class="button-container">
+            <button onclick="resetForm()">重置</button>
+            <button onclick="interestRateToOther()">计算</button>
+        </div>
+    </div>
+    <br>
+
+    <div class="form-row">
+        <label for="fee-Rate">综合费率：</label>
+        <input type="text" id="fee-Rate" readonly>
+    </div>
+    <br>
+    <div class="form-row">
+        <label for="monthlyPayment">万元系数：</label>
+        <input type="number" id="monthlyPayment" readonly>
+    </div>
+    <br>
+    <div class="form-row">
+        <label for="interest">年化利率：</label>
+        <input type="text" id="interest" readonly>
+    </div>
+    <br>
+    <div class="form-row">
+        <label for="monthly-interest">月息：</label>
+        <input type="text" id="monthly-interest" readonly>
+    </div>
+</div>
+
+<script>
+    function updateCoefficient() {
+        var calculationMethod = document.getElementById("calculationMethod");
+        var interestRate = document.getElementById("interestRate");
+        var loanAmountRow = document.getElementById("loanAmountRow");
+
+        if (calculationMethod.value === "0.0899") {
+            interestRate.placeholder = "例如系数8.99";
+        } else if (calculationMethod.value === "0.2452") {
+            interestRate.placeholder = "例如系数24.52";
+        } else if (calculationMethod.value === "207.54") {
+            interestRate.placeholder = "例如系数207.54";
+        } else if (calculationMethod.value === "4.1") {
+            interestRate.placeholder = "例如月息4厘1，写在4.1";
+        }
+        if (calculationMethod.value === "2100") {
+            interestRate.placeholder = "例如月供2100";
+            loanAmountInput.placeholder = "例如贷款金额100000";
+            loanAmountRow.style.display = "flex";
+            amountOfDiscount.style.display = "flex";
+        } else {
+            loanAmountRow.style.display = "none";
+            amountOfDiscount.style.display = "none";
+        }
+        interestRate.value = ""; // 清空interestRate的值
+        loanAmountInput.value = "";
+        discount.value = "";
+    }
+
+    function resetForm() {
+        document.getElementById("periods").value = "";
+        document.getElementById("interestRate").value = "";
+        document.getElementById("fee-Rate").value = "";
+        document.getElementById("monthlyPayment").value = "";
+        document.getElementById("interest").value = "";
+        document.getElementById("monthly-interest").value = "";
+        document.getElementById("loanAmountInput").value = "";
+        document.getElementById("discount").value = "";
+    }
+    //限定系数转化中月供的最低值
+    function checkPurchaseTaxmonthlyPayment() {
+        var periods = parseInt(document.getElementById("periods").value);
+        var monthly = parseFloat(document.getElementById("interestRate").value);
+        var loanAmount = parseFloat(document.getElementById("loanAmountInput").value);
+        if (isNaN(loanAmount)) {
+            loanAmount = 100000;
+        }
+        if (isNaN(periods)) {
+            periods = 60;
+        }
+        if (calculationMethod.value === "2100") {
+            if (monthly < loanAmount / periods) {
+                alert('月供应该不低于贷款金额÷贷款期数');
+                document.getElementById('interestRate').value = (loanAmount / periods).toFixed(2); // 清空购置税输入框
+            }
+        }
+    }
+</script>
+</body>
+</html>
+

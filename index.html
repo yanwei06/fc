@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="main.js?v=20230227"></script>
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <title>车贷计算器</title>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?dac47d1f26ed88c810425655b85a2a7b"; // 用你自己的统计代码ID替换
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <script>
+        let trackedPages = [];
+        function showContent(id, event) {
+            var contents = document.getElementsByClassName("content");
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].style.display = "none";
+            }
+            var content = document.getElementById(id);
+            content.style.display = "block";
+
+            var buttons = document.getElementsByTagName("a");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].style.color = "black";
+                buttons[i].style.fontWeight = "normal";
+            }
+
+            event.target.style.color = "red";
+            event.target.style.fontWeight = "bold";
+        }
+
+        // 新增统计代码
+        if (!trackedPages.includes(id)) {
+            _hmt.push(['_trackEvent', 'iframe_page', 'view', id]);
+            trackedPages.push(id);
+        }
+    </script>
+
+    <body onload="showContent('car-loan')">
+        <ul class="menu">
+            <li><a href="#" onclick="showContent('coefficient', event)">常见系数</a></li>
+            <li><a href="#" onclick="showContent('Atwill', event)">系数转化</a></li>
+            <li><a href="#" onclick="showContent('car-loan', event)">金融计算</a></li>
+            <li><a href="#" onclick="showContent('calculate', event)">贴息计算</a></li>
+            <li><a href="#" onclick="showContent('Additionaldiscounts', event)">产品对比</a></li>
+            <li><a href="#" onclick="showContent('earlyRepayment', event)">提前结清</a></li>
+            <li><a href="#" onclick="showContent('Partialrepayment', event)">部分还款</a></li>
+            <li><a href="#" onclick="showContent('returnOnInvestment', event)">成本利润</a></li>
+            <li><a href="#" onclick="showContent('Nouninterpretation', event)">名词解释</a></li>
+            <li><a href="#" onclick="showContent('Legalclause', event)">法律风险</a></li>
+            <!--<li><a href="#" onclick="showContent('Aboutus', event)">关于我们</a></li>-->
+        </ul>
+
+        <!-- 每个页面的内容放在独立的iframe中，并包含独立的统计代码 -->
+          <div class="content" id="car-loan">
+            <iframe id="iframe3" src="./car-loan.html"></iframe>
+            <script>
+            var iframe = document.getElementById('iframe3');
+            iframe.onload = function() {
+              iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+            }
+            </script>
+        </div>
+
+        <div class="content" id="coefficient">
+            <iframe id="iframe1" src="./tenThousandCoefficient.html"></iframe>
+            <script>
+            var iframe = document.getElementById('iframe1');
+            iframe.onload = function() {
+              iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+            }
+            </script>
+        </div>
+
+        <div class="content" id="Atwill">
+            <iframe id="iframe2" src="./tenThousandCoefficientAtwill.html"></iframe>
+            <script>
+            var iframe = document.getElementById('iframe2');
+            iframe.onload = function() {
+              iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+            }
+            </script>
+        </div>
+
+
+        <div class="content" id="calculate">
+            <iframe id="iframe4" src="./calculate.html"></iframe>
+            <script>
+            var iframe = document.getElementById('iframe4');
+            iframe.onload = function() {
+              iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+            }
+            </script>
+        </div>
+
+        <div class="content" id="Additionaldiscounts">
+            <iframe id="iframe5" src="./Additionaldiscounts.html"></iframe>
+            <script>
+            var iframe = document.getElementById('iframe5');
+            iframe.onload = function() {
+              iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+            }
+            </script>
+        </div>
+
+        <div class="content" id="earlyRepayment">
+            <iframe id="iframe6" src="./Earlyrepayment.html"></iframe>
+            <script>
+            var iframe = document.getElementById('iframe6');
+            iframe.onload = function() {
+              iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+            }
+            </script>
+        </div>
+
+        <div class="content" id="Partialrepayment">
+            <iframe id="iframe7" src="./Partialrepayment.html"></iframe>
+            <script>
+            var iframe = document.getElementById('iframe7');
+            iframe.onload = function() {
+              iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+            }
+            </script>
+        </div>
+
+        <div class="content" id="returnOnInvestment">
+            <iframe id="iframe8" src="./returnOnInvestment.html"></iframe>
+            <script>
+            var iframe = document.getElementById('iframe8');
+            iframe.onload = function() {
+              iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+            }
+            </script>
+        </div>
+
+        <div class="content" id="Nouninterpretation">
+            <iframe id="iframe98" src="./Nouninterpretation.html"></iframe>
+            <script>
+            var iframe = document.getElementById('iframe98');
+            iframe.onload = function() {
+              iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+            }
+            </script>
+        </div>
+
+        <div class="content" id="Legalclause">
+            <iframe id="iframe99" src="./Legalclause.html"></iframe>
+            <script>
+            var iframe = document.getElementById('iframe99');
+            iframe.onload = function() {
+              iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+            }
+            </script>
+        </div>
+
+        <div class="content" id="Aboutus">
+            <iframe id="iframe100" src="./Aboutus.html"></iframe>
+            <script>
+            var iframe = document.getElementById('iframe100');
+            iframe.onload = function() {
+              iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+            }
+            </script>
+        </div>
+
+    </body>
+</body>
+</html>

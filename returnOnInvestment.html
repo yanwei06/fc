@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="index.css">
+    <script src="calculatescript.js"></script>
+
+</head>
+<body>
+    <p>此计算器用于计算汽车金融公司、银行、融资租赁公司投资回报率，不适用于金融代理商或经销商。</p>
+    <div class="container">
+        <div class="form-row">
+            <label for="loan-amount">贷款金额：</label>
+            <input type="number" id="loan-amount" required placeholder="100000"><span class="required"></span>
+        </div>
+
+        <div class="form-row">
+            <label for="interest-rate">利率：</label>
+            <input type="number" id="interest-rate" required placeholder="9.99"><span class="required"></span>
+        </div>
+
+        <div class="form-row">
+            <label for="periods">期数：</label>
+            <input type="number" id="periods" required placeholder="48"><span class="required"></span>
+        </div>
+        <div class="form-row">
+            <label for="discount">贴息：</label>
+            <input type="number" id="discount" placeholder="请输入贴息金额">
+        </div>
+        <hr>
+
+        <div class="form-row">
+            <label for="financingCosts">融资成本：</label>
+            <input type="number" id="financingCosts" placeholder="请输入融资成本的利率%">
+        </div>
+        <div class="form-row">
+            <label for="costOfRisk">风险成本：</label>
+            <input type="number" id="costOfRisk" placeholder="请输入风险成本的比例%">
+        </div>
+        <div class="form-row">
+            <label for="addOnCosts">附加品成本：</label>
+            <input type="number" id="addOnCosts" placeholder="GPS或赠送有其他用品">
+        </div>
+        <div class="form-row">
+            <label for="indirectCosts">间接成本：</label>
+            <input type="number" id="indirectCosts" placeholder="房租、水电、人工均摊到每台车">
+        </div>
+
+        <hr>
+
+        <div class="form-row">
+            <label for="commissionCoefficient">佣金系数：</label>
+            <input type="number" id="commissionCoefficient" placeholder="请输入佣金比例%">
+        </div>
+        <div class="form-row">
+            <label for="commissionAmount">佣金金额：</label>
+            <input type="number" id="commissionAmount" placeholder="请输入佣金金额">
+        </div>
+        <div class="form-row">
+          <div class="button-container">
+            <button onclick="resetForm()">重置</button>
+            <button onclick="calculatereturnOnInvestment()">计算</button>
+          </div>
+        </div>
+
+        <div class="form-row">
+            <label for="taxCosts">税务成本：</label>
+            <input type="number" id="taxCosts" readonly>
+        </div>
+        <div class="form-row">
+            <label for="productCost">产品成本：</label>
+            <input type="number" id="productCost" readonly>
+        </div>
+        <div class="form-row">
+            <label for="productRevenue">产品收益：</label>
+            <input type="number" id="productRevenue" readonly>
+        </div>
+        <div class="form-row">
+            <label for="returnOnInvestment">投资回报率：</label>
+            <input type="text" id="returnOnInvestment" readonly>
+        </div>
+    </div>
+
+    <script>
+        function resetForm() {
+            document.getElementById("loan-amount").value = "";
+            document.getElementById("interest-rate").value = "";
+            document.getElementById("periods").value = "";
+            document.getElementById("discount").value = "";
+            document.getElementById("financingCosts").value = "";
+            document.getElementById("costOfRisk").value = "";
+            document.getElementById("addOnCosts").value = "";
+            document.getElementById("indirectCosts").value = "";
+            document.getElementById("commissionCoefficient").value = "";
+            document.getElementById("commissionAmount").value = "";
+        }
+    </script>
+</body>
+</html>
+

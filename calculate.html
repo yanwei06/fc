@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>汽车贷款计算器</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="calculatescript.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="form-row">
+            <label for="interest-rate">利率：</label>
+            <input type="number" id="interest-rate" required placeholder="8.99"><span class="required"></span>
+        </div>
+        <div class="form-row">
+            <label for="periods">期数：</label>
+            <input type="number" id="periods" required placeholder="24"><span class="required"></span>
+        </div><hr>
+
+        <div class="vertical-type" style="display: flex; justify-content: space-between;margin-top: 10px">
+            <label for="calculateTheProject">计算项目：</label>
+            <div id="calculateTheProject" onchange="updateCoefficient()">
+                <input type="radio" name="repaymentMethod" value="3000" id="calculateTheDiscount" style="margin-right: 10px;" checked>
+                <label for="calculateTheDiscount">计算贷款</label>
+                <input type="radio" name="repaymentMethod" value="100000" id="calculateTheLoan" style="margin-right: 10px;">
+                <label for="calculateTheLoan">计算贴息</label>
+            </div>
+        </div><br>
+
+        <div class="form-row">
+            <label for="loan-amount">金额：</label>
+            <input type="number" id="loan-amount" required placeholder="例如贴息金额3000"><span class="required"></span><br><br>
+        </div>
+
+        <div class="form-row">
+          <div class="button-container">
+            <button onclick="resetForm()">重置</button>
+            <button onclick="Discountcalculate()">计算</button>
+          </div>
+        </div>
+        <div class="form-row">
+            <label for="discount">贴息额：</label>
+            <input type="number" id="discount" readonly>
+        </div>
+        <div class="form-row">
+            <label for="loanAmount">0息贷款额：</label>
+            <input type="number" id="loanAmount" readonly>
+        </div>
+        <div class="form-row">
+            <label for="monthlyPayment">月供：</label>
+            <input type="number" id="monthlyPayment" readonly>
+        </div>
+        <div class="form-row">
+            <label for="monthly-interest">月息：</label>
+            <input type="text" id="monthly-interest" readonly>
+        </div>
+    </div>
+
+    <script>
+        function resetForm() {
+            document.getElementById("interest-rate").value = "";
+            document.getElementById("periods").value = "";
+            document.getElementById("loan-amount").value = "";
+            document.getElementById("discount").value = "";
+            document.getElementById("loanAmount").value = "";
+            document.getElementById("monthlyPayment").value = "";
+            document.getElementById("monthly-interest").value = "";
+
+        }
+        function updateCoefficient() {
+            var calculationMethod = document.querySelector('input[name="repaymentMethod"]:checked');
+            var loanamount = document.getElementById("loan-amount");
+
+            if (calculationMethod.value === "3000") {
+                loanamount.setAttribute("placeholder", "例如贴息金额3000");
+            } else if (calculationMethod.value === "100000") {
+                loanamount.setAttribute("placeholder", "例如贷款金额100000");
+            }
+            loanamount.value = ""; // 清空loanamount的值
+        }
+    </script>
+</body>
+</html>
+

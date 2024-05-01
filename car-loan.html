@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="index.css">
+    <script src="calculatescript.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="form-row">
+            <label for="invoice-price">开票价：</label>
+            <input type="number" id="invoice-price" required placeholder="100000"><span class="required"></span>
+        </div>
+        <div class="form-row">
+            <label for="purchase-tax">购置税：</label>
+            <input type="number" id="purchase-tax" placeholder="请输入购置税" oninput="checkPurchaseTax()">
+        </div>
+        <div class="form-row">
+            <label for="insurance">保险：</label>
+            <input type="number" id="insurance" placeholder="请输入保险金额">
+        </div>
+        <div class="form-row">
+            <label for="additional-loan">附加贷：</label>
+            <input type="number" id="additional-loan" placeholder="请输入附加贷款金额">
+        </div><hr>
+
+
+        <div class="form-row">
+            <label for="calculationMethod" class="red-text">计算方式：</label>
+            <select id="calculationMethod" required onchange="updateCoefficient()">
+                <option value="0.0899">年化利率</option>
+                <option value="0.2452">综合费率</option>
+                <option value="207.54">万元系数</option>
+                <option value="4.1">月息</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label for="interest-rate">系数：</label>
+            <input type="number" id="interest-rate" required placeholder="例如系数8.99"><span class="required"></span>
+        </div><hr>
+
+        <div class="form-row">
+            <label for="periods">期数：</label>
+            <input type="number" id="periods" required placeholder="60"><span class="required"></span>
+        </div>
+        <div class="form-row">
+            <label for="discount">贴息：</label>
+            <input type="number" id="discount" placeholder="请输入贴息金额">
+        </div>
+
+
+        <div class="vertical-type" style="display: flex; justify-content: space-between;margin-top: 10px">
+        <label for="downPaymentOptions">首付方式：</label>
+        <div id="downPaymentOptions" onchange="updateCoefficient2()">
+            <input type="radio" name="downPaymentOptions" value="amount" id="amount" style="margin-right: 10px;"
+                   checked>
+            <label for="amount">首付金额 </label>
+            <input type="radio" name="downPaymentOptions" value="proportion" id="proportion"
+                   style="margin-right: 10px;">
+            <label for="proportion">首付比例</label>
+        </div>
+    </div>
+    <br>
+
+    <div class="form-row">
+        <label for="Downpayment">首付：</label>
+        <input type="number" id="Downpayment" required placeholder="例如首付金额10000"><span class="required"></span>
+    </div>
+
+
+
+
+        <div class="form-row">
+          <div class="button-container">
+            <button onclick="resetForm()">重置</button>
+            <button onclick="calculatecarloan()">计算</button>
+          </div>
+        </div>
+        <div class="form-row">
+            <label for="downPaymentRatio">首付比例：</label>
+            <input type="text" id="downPaymentRatio" readonly>
+        </div>
+        <div class="form-row">
+            <label for="loan-amount">贷款金额：</label>
+            <input type="number" id="loan-amount" readonly>
+        </div>
+        <div class="form-row">
+            <label for="monthly-payment">月供：</label>
+            <input type="number" id="monthly-payment" readonly>
+        </div>
+        <div class="form-row">
+            <label for="interest">利息：</label>
+            <input type="number" id="interest" readonly>
+        </div>
+        <div class="form-row">
+            <label for="monthly-interest">月息：</label>
+            <input type="text" id="monthly-interest" readonly>
+        </div>
+    </div>
+
+    <script>
+
+        function resetForm() {
+            document.getElementById("invoice-price").value = "";
+            document.getElementById("purchase-tax").value = "";
+            document.getElementById("insurance").value = "";
+            document.getElementById("additional-loan").value = "";
+            document.getElementById("interest-rate").value = "";
+            document.getElementById("periods").value = "";
+            document.getElementById("discount").value = "";
+            document.getElementById("Downpayment").value = "";
+        }
+
+
+        function updateCoefficient() {
+            var calculationMethod = document.getElementById("calculationMethod");
+            var interestRate = document.getElementById("interest-rate");
+
+            if (calculationMethod.value === "0.0899") {
+                interestRate.placeholder = "例如系数8.99";
+            } else if (calculationMethod.value === "0.2452") {
+                interestRate.placeholder = "例如系数24.52";
+            } else if (calculationMethod.value === "207.54") {
+                interestRate.placeholder = "例如系数207.54";
+            }else if (calculationMethod.value === "4.1") {
+                interestRate.placeholder = "例如月息4厘1，写做4.1";
+            }
+            interestRate.value = ""; // 清空interestRate的值
+        }
+
+    </script>
+<script>
+    function updateCoefficient2() {
+        var downPaymentOptions = document.querySelector('input[name="downPaymentOptions"]:checked');
+        var Downpayment = document.getElementById("Downpayment");
+
+        if (downPaymentOptions.value === "amount") {
+            Downpayment.setAttribute("placeholder", "例如首付金额10000");
+        } else if (downPaymentOptions.value === "proportion") {
+            Downpayment.setAttribute("placeholder", "例如首付10%，写做0.1");
+        }
+        Downpayment.value = ""; // 清空loanamount的值
+    }
+</script>
+</body>
+</html>
+

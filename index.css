@@ -1,0 +1,187 @@
+
+/* 通用样式 */
+body {
+  font-family: Arial, sans-serif; /* 设置页面使用 Arial 字体族和 sans-serif 字体作为备选字体 */
+  background-color: #f0f0f0; /* 设置页面的背景颜色为淡灰色 */
+  margin: 0; /* 清除页面主体的外边距 */
+  padding: 0; /* 清除页面主体的内边距 */
+  align-items: center;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 16px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  margin-top: 10px; /* 设置右边距为 20 像素 */
+  margin-left: 10px; /* 设置右边距为 20 像素 */
+  margin-right: 10px; /* 设置右边距为 20 像素 */
+}
+
+.container {
+  max-width: 390px; /* 设置容器的最大宽度为 390 像素 */
+  margin: 0 auto; /* 实现容器的水平居中 */
+  padding: 10px; /* 设置容器的内边距为 10 像素 */
+  background-color: #fff; /* 设置容器的背景颜色为白色 */
+  border-radius: 5px; /* 设置容器的圆角边框半径为 5 像素 */
+}
+
+/* 菜单样式 */
+ul.menu {
+  flex-direction: row; /* 在小屏幕上保持水平排列 */
+  align-items: center; /* 垂直居中菜单项 */
+  text-align: center; /* 文本水平居中 */
+  line-height: 1.5; /* 设置行高为 1.5 倍 */
+  margin-bottom: 10px; /* 设置下方外边距为 10 像素 */
+  flex-wrap: wrap; /* 允许菜单项在小屏幕上换行 */
+  justify-content: space-between; /* 在小屏幕上均匀分布菜单项 */
+  list-style-type: none; /* 清除列表样式 */
+  display: flex; /* 显示为弹性盒子 */
+  padding: 0; /* 清除内边距 */
+  margin-top: 20px; /* 设置右边距为 20 像素 */
+  margin-left: 20px; /* 设置右边距为 20 像素 */
+}
+
+.menu li {
+  margin-right: 20px; /* 设置菜单项之间的右边距为 20 像素 */
+  text-align: center; /* 水平居中菜单项内的文本 */
+}
+
+.menu li a {
+  text-decoration: none; /* 清除菜单项链接的下划线样式 */
+  color: white; /* 设置菜单项链接的文字颜色为白色 */
+  transition: color 0.3s; /* 添加颜色过渡效果，持续时间为 0.3 秒 */
+  margin-right: 10px; /* 调整菜单项链接之间的右边距为 10 像素（可根据需要调整） */
+}
+
+.menu li a:hover {
+  color: red; /* 鼠标悬停时，修改菜单项链接的文字颜色为红色 */
+}
+
+.form-row {
+  display: flex; /* 显示为弹性盒子 */
+  align-items: center; /* 垂直居中表单行 */
+  justify-content: space-between;
+  margin-bottom: 15px; /* 设置下方外边距为 15 像素 */
+}
+
+
+.form-row label {
+  flex: 1; /* 设置标签占据剩余空间的比例 */
+  font-weight: bold; /* 设置标签的文本为粗体 */
+}
+
+
+.form-row input,
+select {
+  text-align: left; /* 设置文本水平居左对齐 */
+  width: 100%; /* 设置输入框和选择框的宽度为父容器的 100% */
+  flex: 1; /* 设置输入框和选择框占据剩余空间的比例 */
+  padding: 5px; /* 设置输入框和选择框的内边距为 5 像素 */
+  border: 1px solid #ccc; /* 设置输入框和选择框的边框为 1px 实线边框，颜色为淡灰色 */
+  border-radius: 3px; /* 设置输入框和选择框的圆角边框半径为 3 像素 */
+  box-sizing: border-box; /* 使用 border-box 盒模型，确保边框不会左移 */
+}
+/* 输入框样式 */
+input[type="number"],
+input[type="text"] {
+  border-style: solid; /* 设置边框样式为实线 */
+  border-width: 1px; /* 设置边框宽度为 1 像素 */
+  border-color: black; /* 设置边框颜色为黑色 */
+  width: 180px; /* 设置宽度为 180 像素 */
+  margin-left: 0;
+}
+
+按钮样式
+.button-container {
+  display: flex; /* 显示为弹性盒子 */
+  justify-content: space-between; /* 在按钮容器中均匀分布元素 */
+}
+
+.form-row.full-width {
+  justify-content: space-between; /* 在全宽表单行中均匀分布元素 */
+}
+
+.form-row button {
+  margin-right: 120px; /* 设置右边距为 120 像素 */
+}
+
+.form-row button:last-child {
+  margin-right: 0; /* 清除右边距 */
+}
+
+.form-row button:first-child,
+#showMoreButton {
+  position: relative; /* 设置相对定位 */
+  left: 50px; /* 从左侧移动按钮位置 */
+  margin-left: 80px; /* 设置左边距为 80 像素 */
+}
+
+/* 必填字段样式 */
+.required {
+  color: red; /* 设置文本颜色为红色 */
+}
+
+/* 额外样式 */
+hr {
+  border-top: 1px solid #ccc; /* 设置上边框为灰色实线，宽度为 1 像素 */
+  margin-bottom: 15px; /* 设置下方外边距为 15 像素 */
+}
+
+.red-text {
+  color: red;
+}
+
+#iframe1,
+#iframe2,
+#iframe3,
+#iframe4,
+#iframe5,
+#iframe6,
+#iframe7,
+#iframe8,
+#iframe9,
+#iframe10,
+#iframe98,
+#iframe99,
+#iframe100 {
+  min-height: 800px;
+  width: 100%;
+}
+
+.vertical-type {
+  font-weight: bold; /* 设置标签的文本为粗体 */
+}
+
+
+ /* 定义tooltip的基本样式 */
+  .tooltip {
+  display: none; /* 初始状态不显示 */
+  /*position: absolute; !* 绝对定位 *!*/
+  background-color: #f0f0f0; /* 背景颜色 */
+  padding: 5px 10px; /* 内边距 */
+  border-radius: 4px; /* 圆角 */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); /* 阴影 */
+  white-space: nowrap; /* 文本不换行 */
+  font-size: 12px; /* 字号 */
+  color: #333; /* 文字颜色 */
+  z-index: 999; /* 层叠顺序 */
+   /* 添加新的定位规则，始终处于屏幕中间 */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+   font-style: italic; /* 文字样式为斜体 */
+}
+
+  /* 当触发元素获得焦点或鼠标悬停时，显示tooltip */
+  .tooltip-toggle:focus .tooltip,
+  .tooltip-toggle:hover .tooltip {
+      display: flex; /* 显示 */
+  }

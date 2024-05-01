@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="index.css">
+    <script src="calculatescript.js"></script>
+
+</head>
+
+<body>
+    <p>由于汽车贷款融资期限短，各汽车金融公司、银行、融资租赁公司几乎不会设计部分还款的贷款方式，所以此计算器一般用于房贷的部分还款计算。</p>
+
+
+    <div class="container">
+        <div class="vertical-type" style="display: flex; justify-content: space-between;margin-top: 10px">
+            <label for="repaymentMethodInstallment">还款方式：</label>
+            <div id="repaymentMethod">
+              <input type="radio" name="repayment" value="principal" id="repaymentMethodPrincipal"style="margin-right: 10px;" disabled>
+              <label for="repaymentMethodPrincipal">等额本金</label>
+              <input type="radio" name="repayment" value="installment" id="repaymentMethodInstallment" checked  style="margin-right: 10px;">
+              <label for="repaymentMethodInstallment">等额本息</label>
+            </div>
+        </div><br>
+        <div class="form-row">
+            <label for="periods">剩余贷款期限：</label>
+            <input type="number" id="periods" required placeholder="360"><span class="required"></span>
+        </div>
+        <div class="form-row">
+            <label for="loanamount">剩余贷款金额：</label>
+            <input type="number" id="loanamount" required placeholder="800000"><span class="required"></span>
+        </div><hr>
+
+        <div class="vertical-type" style="display: flex; justify-content: space-between;margin-top: 10px">
+            <label for="calculationMethod">已知信息：</label>
+            <div id="calculationMethod" onchange="updateCoefficient()">
+                <input type="radio" name="repaymentMethod" value="2075.4" id="knownMonthlyPayments" style="margin-right: 10px;" checked>
+                <label for="knownMonthlyPayments">已知月供</label>
+                <input type="radio" name="repaymentMethod" value="0.0899" id="knownInterestRates" style="margin-right: 10px;">
+                <label for="knownInterestRates">已知利率</label>
+            </div>
+        </div><br>
+
+        <div class="form-row">
+            <label for="Month">系数：</label>
+            <input type="number" id="Month" required placeholder="例如月供3958.97"><span class="required"></span>
+        </div><hr>
+        <div class="form-row">
+            <label for="plannedRepaymentAmount">计划还款金额：</label>
+            <input type="number" id="plannedRepaymentAmount" required placeholder="100000" min="1"><span class="required"></span>
+        </div>
+
+
+        <div class="vertical-type" style="display: block; margin-bottom: 10px;">
+            <label for="shortenTheYears">调整方案：</label>
+        
+            <div>
+                <input type="radio" name="adjustTheScenario" value="theMonthlyPaymentRemainsUnchanged" id="shortenTheYears" checked style="margin-right: 10px;">
+                <label for="shortenTheYears">缩短年限（每月月供基本不变）</label>
+            </div>
+            <div> 
+                <input type="radio" name="adjustTheScenario" value="theNumberOfPeriodsDoesNotChange" id="reduceMonthlyPayments" style="margin-right: 10px;">
+                <label for="reduceMonthlyPayments">减少月供（还款期数不变）</label>
+            </div>
+        </div>
+        <div class="form-row">
+          <div class="button-container">
+            <button onclick="resetForm()">重置</button>
+            <button onclick="monthlyPaymentPartialrepayment()">计算</button>
+          </div>
+        </div>
+
+
+        <div class="form-row">
+            <label for="oldInterestOonLoans">原利息：</label>
+            <input type="number" id="oldInterestOonLoans" readonly>
+        </div>
+        <div class="form-row">
+            <label for="newInterestOonLoans">现利息：</label>
+            <input type="number" id="newInterestOonLoans" readonly>
+        </div>
+        <div class="form-row">
+            <label for="saveInterest">节省利息：</label>
+            <input type="number" id="saveInterest" readonly>
+        </div><hr>
+        <div class="form-row">
+            <label for="InterestRate">年化利率：</label>
+            <input type="text" id="InterestRate" readonly>
+        </div>
+<!--        <div class="form-row">-->
+<!--            <label for="MonthlyRates">月息：</label>-->
+<!--            <input type="text" id="MonthlyRates" readonly>-->
+<!--        </div>-->
+        <div class="form-row">
+            <label for="newLoanAmount">新贷款金额：</label>
+            <input type="number" id="newLoanAmount" readonly>
+        </div>
+        <div class="form-row">
+            <label for="numberOfNewRepaymentPeriods">新还期数：</label>
+            <input type="number" id="numberOfNewRepaymentPeriods" readonly>
+        </div>
+        <div class="form-row">
+            <label for="monthlyPaymentAfterEarlyRepayment">新月供：</label>
+            <input type="number" id="monthlyPaymentAfterEarlyRepayment" readonly>
+        </div>
+    </div>
+
+
+    <script>
+        function resetForm() {
+            document.getElementById("periods").value = "";
+            document.getElementById("loanamount").value = "";
+            document.getElementById("Month").value = "";
+            document.getElementById("plannedRepaymentAmount").value = "";
+            // document.getElementById("Liquidated-damages-factor").value = "";
+            // document.getElementById("result").textContent = "";
+
+        }
+
+    </script>
+    <script>
+
+        // 获取按钮和要显示/隐藏的内容元素
+        var showMoreButton = document.getElementById("showMoreButton");
+        var hiddenContent1 = document.getElementById("hiddenContent1");
+        var hiddenContent2 = document.getElementById("hiddenContent2");
+        var hiddenContent3 = document.getElementById("hiddenContent3");
+        var hiddenContent4 = document.getElementById("hiddenContent4");
+
+        // 初始状态下，内容是隐藏的
+        var isContentVisible = false;
+
+        // 点击按钮时切换内容的可见性
+        showMoreButton.addEventListener("click", function () {
+            isContentVisible = !isContentVisible; // 切换状态
+
+            // 根据状态来显示或隐藏内容
+            if (isContentVisible) {
+                hiddenContent1.style.display = "block";
+                hiddenContent2.style.display = "block";
+                hiddenContent3.style.display = "block";
+                hiddenContent4.style.display = "block";
+                showMoreButton.textContent = "点击隐藏";
+            } else {
+                hiddenContent1.style.display = "none";
+                hiddenContent2.style.display = "none";
+                hiddenContent3.style.display = "none";
+                hiddenContent4.style.display = "none";
+                showMoreButton.textContent = "点击显示更多";
+            }
+        });
+    </script>
+
+    <script>
+        function updateCoefficient() {
+            var calculationMethod = document.querySelector('input[name="repaymentMethod"]:checked');
+            var Month = document.getElementById("Month");
+
+            if (calculationMethod.value === "2075.4") {
+                Month.setAttribute("placeholder", "例如月供3958.97");
+            } else if (calculationMethod.value === "0.0899") {
+                Month.setAttribute("placeholder", "例如利率4.3");
+            }
+            Month.value = ""; // 清空loanamount的值
+        }
+    </script>
+
+</body>
+</html>
+

@@ -1,0 +1,150 @@
+/* 通用样式 */
+body {
+    font-size: 18px; /* 设置 body 字体大小为 18px，提高移动端易读性 */
+    line-height: 1.5; /* 设置 body 行高为 1.5 倍行高，提高触摸区域 */
+    color: #333; /* 设置文字颜色 */
+    font-family: Arial, Helvetica, sans-serif; /* 设置文字字体 */
+  }
+  
+  /* 主标题样式 */
+  h3 {
+    text-align: left;
+  }
+  
+  /* 按钮样式 */
+ p{    
+    margin-top: 10px; /* 设置右边距为 20 像素 */
+    margin-left: 10px; /* 设置右边距为 20 像素 */
+    margin-right: 10px; /* 设置右边距为 20 像素 */
+  }
+  input[type="button"] {
+    font-size: 18px; /* 按钮字体大小 18px，提高可点击区域 */
+    padding: 8px 15px; /* 按钮内外边距 */
+    margin-right: 10px;
+    border-radius: 4px; /* 按钮圆角 */
+    background-color: #959393; /* 按钮背景色 */
+    color: #fff; /* 文字颜色 */
+    /* 下面的样式用于响应式设计 */
+    /* display: flex; */
+    flex-direction: row; /* 在小屏幕上保持水平排列 */
+    align-items: center; /* 垂直居中菜单项 */
+    text-align: center; /* 文本水平居中 */
+    line-height: 1.5; /* 设置行高为 1.5 倍 */
+    margin-bottom: 10px; /* 设置下方外边距为 10 像素 */
+    flex-wrap: wrap; /* 允许菜单项在小屏幕上换行 */
+    justify-content: space-between; /* 在小屏幕上均匀分布菜单项 */
+    list-style-type: none; /* 清除列表样式 */
+    padding: 0; /* 清除内边距 */
+    margin: 0 auto; /* 实现菜单项的水平居中 */
+    margin-top: 20px; /* 设置上边距为 20 像素 */
+    margin-left: 20px; /* 设置左边距为 20 像素 */
+    flex-wrap: wrap; /* 允许菜单项在小屏幕上换行 */
+    
+  }
+
+  /* 按钮 hover 状态样式 */
+  input[type="button"]:hover {
+    background-color: #0069d9;
+  }
+  
+  /* 输入框样式 */
+  input[type="text"] {
+    font-size: 18px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    width: 80px;
+  }
+  
+  /* 表格样式 */
+  table {
+    border-collapse: collapse;
+    font-size: 16px;
+    color: #333;
+    width: 100%;
+    /* 下面的样式用于表格水平滚动优化 */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* 表格内边距和边框 */
+  th, td {
+    padding: 12px;
+    border: 1px solid #ccc;
+  }
+  
+  /* 内容左右对齐 */
+  th, td {
+    text-align: center;
+  }
+  
+  /* 表头样式 */
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  /* 奇数行背景 */
+  tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  /* 偶数行背景 */
+  tbody tr:nth-child(even) {
+    background-color: #fff;
+  }
+  
+  /* 鼠标悬停行背景 */
+  tbody tr:hover {
+    background-color: #e6f7ff;
+  }
+  
+  /* 结果区域样式 */
+  #result {
+    padding: 10px; /* 结果区域内外距 */
+    background: #f5f5f5; /* 结果区域背景 */
+  }
+
+
+form {
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: -0.5em; /* 新增 */
+}
+
+button {
+  flex: 0 0 30%;
+  margin: 0.5em 1%; 
+  box-sizing: border-box; 
+}
+
+@media (max-width: 600px) {
+  button {
+    flex: 0 0 46%;
+  }
+}
+
+form::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+
+
+.container {
+  line-height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.label,
+.input-field, 
+.calculate-button {
+  width: 100px;
+}
+label {
+  align-self: center; 
+}
+
